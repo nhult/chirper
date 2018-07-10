@@ -10,6 +10,14 @@ export default new Router({
       path: '/',
       name: 'LandingPage',
       component: LandingPage
+    },
+    {
+      path: '/signup',
+      name: 'Register'
+    },
+    {
+      path: '/signin',
+      name: 'Login'
     }
   ]
 })
