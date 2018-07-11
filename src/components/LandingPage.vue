@@ -12,20 +12,19 @@
       <div class="Login__form">
         <input type="email" placeholder="Email address" v-model="loginEmail" />
         <input type="password" placeholder="Password" v-model="loginPassword" />
-        <input type="submit" value="Log in" class="Login__button" />
-        <a href="http://localhost:8080/#/reset">Forgot password?</a>
+        <input type="submit" value="Log in" class="Login__button" @click="signIn()" />
+        <router-link to="/reset"><a>Forgot password?</a></router-link>
       </div>
       <div class="Sign__container">
         <div class="Sign__header">
-          <span>CHIRP_LOGO</span>
-          <button type="button" class="Login__button">Log in</button>
+          <img src="../assets/icons8-twitter-50.png"></img>
+          <button type="button" class="Login__button" @click="signIn()">Log in</button>
         </div>
         <h1>See what’s happening in the world right now</h1>
-
         <div class="Sign__selection">
           <span>Join Twitter today.</span>
-          <button type="button">Sign Up</button>
-          <button type="button" @click="redirect('signin')">Log in</button>
+          <button type="button" @click="redirect('/signup')">Sign Up</button>
+          <button type="button" @click="redirect('/signin')">Log in</button>
         </div>
       </div>
     </div>
@@ -36,7 +35,7 @@
 </template>
 
 <script>
-import Router from 'vue-router'
+import firebase from 'firebase'
 
 export default {
   name: 'LandingPage',
@@ -47,9 +46,17 @@ export default {
     }
   },
   methods: {
-    redirect: () => {
-      var router = new VueRouter() ;
-      router.go('/signin');
+    redirect: function(path) { this.$router.push(path) },
+
+    signIn: function() {
+      firebase.auth().signInWithEmailAndPassword(this.loginEmail, this.loginPassword).then(
+        function(user) {
+          alert("Success.")
+        },
+        function(err) {
+          alert(err.message)
+        }
+      );
     }
   }
 }
@@ -143,6 +150,8 @@ export default {
       color: #ccc;
       font-size: 0.85rem;
       text-decoration: none;
+      cursor: pointer;
+
       &:hover {
         text-decoration: underline;
       }

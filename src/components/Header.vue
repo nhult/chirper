@@ -1,7 +1,7 @@
 <template>
   <div class="Header">
-    <div class="Header__nav-home">
-      <span>__LOGO</span>
+    <div class="Header__nav-home" @click="redirect('/')">
+      <img src="../assets/icons8-twitter-50.png"></img>
       <span>Home</span>
     </div>
     <div class="Header__nav-about">
@@ -12,7 +12,10 @@
 
 <script>
 export default {
-  name: 'Header'
+  name: 'Header',
+  methods: {
+    redirect: function(path) { this.$router.push(path) }
+  }
 }
 </script>
 
@@ -28,6 +31,8 @@ export default {
   box-shadow: 0 3px 1px -2px #ccc;
   overflow: hidden;
 
+  user-select: none;
+
   & .Header__nav-home {
     margin-left: 250px;
   }
@@ -39,7 +44,7 @@ export default {
     align-items: center;
     margin: 0 20px;
     height: 100%;
-    box-sizing:border-box;
+    box-sizing: border-box;
     cursor: pointer;
 
     &:hover {

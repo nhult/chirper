@@ -8,19 +8,20 @@
         <input type="email" placeholder="Email" v-model="loginEmail" />
         <input type="password" placeholder="Password" v-model="loginPassword" />
         <div>
-          <button type="button" class="Login__button">Log in</button>
+          <button type="button" class="Login__button" @click="signIn()">Log in</button>
           <span>REMEMBERME</span>
-          <a href="reset_password">Forgot password?</a>
+          <router-link to="/reset"><a>Forgot password?</a></router-link>
         </div>
       </div>
       <div class="Login__footer">
-        <span>New to Twitter? <a href="signup">Sign up now »</a></span>
+        <span>New to Twitter? <router-link to="/signup"><a>Sign up now »</a></router-link></span>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import firebase from 'firebase'
 import Header from '@/components/Header'
 
 export default {
@@ -33,6 +34,18 @@ export default {
       loginEmail: '',
       loginPassword: ''
     }
+  },
+  methods: {
+    signIn: function() {
+      firebase.auth().signInWithEmailAndPassword(this.loginEmail, this.loginPassword).then(
+        function(user) {
+          alert("Success.")
+        },
+        function(err) {
+          alert(err.message)
+        }
+      );
+    }
   }
 }
 </script>
@@ -43,6 +56,8 @@ export default {
   flex-flow: column nowrap;
   justify-content: flex-start;
   align-items: center;
+
+  & a { cursor: pointer; color: blue; }
 }
 .Login__container {
   display: grid;

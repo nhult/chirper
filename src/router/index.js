@@ -26,7 +26,7 @@ export default new Router({
     },
     {
       path: '/reset',
-      name: 'PasswordReset'
+      name: 'ResetPassword'
     }
   ]
 })
