@@ -13,7 +13,7 @@
         <input type="email" placeholder="Email address" v-model="loginEmail" />
         <input type="password" placeholder="Password" v-model="loginPassword" />
         <input type="submit" value="Log in" class="Login__button" />
-        <a href="reset_password">Forgot password?</a>
+        <a href="http://localhost:8080/#/reset">Forgot password?</a>
       </div>
       <div class="Sign__container">
         <div class="Sign__header">
@@ -25,7 +25,7 @@
         <div class="Sign__selection">
           <span>Join Twitter today.</span>
           <button type="button">Sign Up</button>
-          <button type="button">Log in</button>
+          <button type="button" @click="redirect('signin')">Log in</button>
         </div>
       </div>
     </div>
@@ -36,12 +36,20 @@
 </template>
 
 <script>
+import Router from 'vue-router'
+
 export default {
   name: 'LandingPage',
   data () {
     return {
       loginEmail: '',
       loginPassword: ''
+    }
+  },
+  methods: {
+    redirect: () => {
+      var router = new VueRouter() ;
+      router.go('/signin');
     }
   }
 }
@@ -70,18 +78,25 @@ export default {
   & .Introduction {
     display: flex;
     flex-flow: column nowrap;
-    justify-content: space-between;
+    justify-content: center;
     text-align: left;
-    height: 15rem;
+    height: 12rem;
 
     color: white;
-    font-size: 2em;
+    font-size: 1.8em;
+
+    width: 20rem;
+    height: 17rem;
+
+    & span {
+      margin: 20px 0;
+    }
   }
 }
 .LandingPage-Right {
   display: grid;
   grid-template-columns: 30% 70%;
-  grid-template-rows: 35% 90%;
+  grid-template-rows: calc(50% - 8.5rem);
 
   width: 50vw;
   height: 100%;
@@ -144,6 +159,7 @@ export default {
 
     width: 20rem;
     height: 17rem;
+    min-height: 17rem;
 
     & h1 {
       text-align: left;
@@ -221,16 +237,72 @@ export default {
     flex-flow: column nowrap;
     justify-content: space-between;
     align-items: center;
-    height: 37.25rem;
+    height: calc(50% + 8.5rem);
   }
 }
 
-@media screen and (max-width: 1050px) {
+@media screen and (max-width: 1050px), screen and (max-height: 600px) {
   .Login__form {
     visibility: hidden;
   }
   .Sign__header button {
-    visibility: visible !important; /* Though not good practice, it is merely visual. */ 
+    visibility: visible !important; /* Though not good practice, it is merely visual. */
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .LandingPage {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100vh;
+    min-height: 100vh;
+  }
+  .LandingPage-Left {
+    order: 5;
+    width: 100vw;
+    height: 14rem;
+    min-height: 14rem;
+  }
+  .LandingPage-Right {
+    order: 1;
+    width: 100vw;
+    height: 20rem;
+    min-height: 20rem;
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: center;
+
+    & .Login__form {
+      display: none;
+    }
+    & .Sign__container {
+      margin-top: 20px;
+    }
+  }
+  .LandingPage__footer {
+    order: 10;
+    margin-top: auto;
+    width: 100vw;
+    min-height: 55px;
+  }
+}
+@media screen and (max-height: 400px) {
+  .LandingPage-Right {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-end;
+    align-items: center;
+
+    & .Login__form {
+      display: none;
+    }
+    & .Sign__container {
+      margin-top: 0;
+    }
   }
 }
 </style>

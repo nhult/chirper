@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+
 import LandingPage from '@/components/LandingPage'
+import Register from '@/components/Register'
+import Login from '@/components/Login'
 
 Vue.use(Router)
 
@@ -13,11 +16,17 @@ export default new Router({
     },
     {
       path: '/signup',
-      name: 'Register'
+      name: 'Register',
+      component: Register
     },
     {
       path: '/signin',
-      name: 'Login'
+      name: 'Login',
+      component: Login
+    },
+    {
+      path: '/reset',
+      name: 'PasswordReset'
     }
   ]
 })
