@@ -30,11 +30,21 @@ export default {
   height: 40px;
   box-shadow: 0 3px 1px -2px #ccc;
   overflow: hidden;
+  background: #ffffff;
 
   user-select: none;
+  font-weight: bold;
+  font-size: 0.9rem;
+  color: rgba(99, 110, 114, .85);
+
 
   & .Header__nav-home {
     margin-left: 250px;
+
+    & img {
+      width: 2rem;
+      margin-right: 10px;
+    }
   }
 
   & div {

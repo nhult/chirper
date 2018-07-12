@@ -22,7 +22,7 @@
         </div>
         <h1>See what’s happening in the world right now</h1>
         <div class="Sign__selection">
-          <span>Join Twitter today.</span>
+          <span>Join Chirper today.</span>
           <button type="button" @click="redirect('/signup')">Sign Up</button>
           <button type="button" @click="redirect('/signin')">Log in</button>
         </div>
@@ -208,6 +208,8 @@ export default {
         border-radius: 20px;
         background: rgba(9, 132, 227, .8);
         cursor: pointer;
+        color: white;
+        font-weight: bold;
 
         &:focus {
           outline: 0;
@@ -218,6 +220,7 @@ export default {
       }
       & button:last-child {
         background: transparent;
+        color: black;
 
         &:hover {
           background: rgba(9, 132, 227, .2);
@@ -233,6 +236,7 @@ export default {
   grid-column-end: 3;
 
   border-top: 1px solid #ccc;
+  background: #ffffff;
 }
 
 

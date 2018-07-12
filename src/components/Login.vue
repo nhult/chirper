@@ -9,12 +9,12 @@
         <input type="password" placeholder="Password" v-model="loginPassword" />
         <div>
           <button type="button" class="Login__button" @click="signIn()">Log in</button>
-          <span>REMEMBERME</span>
+          <!-- <input type="checkbox">Remember me</input> -->
           <router-link to="/reset"><a>Forgot password?</a></router-link>
         </div>
       </div>
       <div class="Login__footer">
-        <span>New to Twitter? <router-link to="/signup"><a>Sign up now »</a></router-link></span>
+        <span>New to Chirper? <router-link to="/signup"><a>Sign up now »</a></router-link></span>
       </div>
     </div>
   </div>
@@ -56,6 +56,9 @@ export default {
   flex-flow: column nowrap;
   justify-content: flex-start;
   align-items: center;
+  background: rgba(178, 190, 195, .2);
+  width: 100vw;
+  height: 100vh;
 
   & a { cursor: pointer; color: blue; }
 }
@@ -66,8 +69,9 @@ export default {
 
   margin-top: 10px;
   border: 1px solid #ccc;
-  width: 50rem;
+  width: 51rem;
   height: 22rem;
+  background: #ffffff;
 
   & .Login__form {
     grid-column-start: 2;
@@ -81,12 +85,28 @@ export default {
     width: 20rem;
     height: 12.5rem;
 
-    & input {
+    & a {
+      grid-column-start: 2;
+      text-align: left;
+      color: #ccc;
+      font-size: 0.85rem;
+      text-decoration: none;
+      cursor: pointer;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    & input[type="email"], input[type="password"] {
       margin: .2rem 0;
       width: 18rem;
       padding: 0.4rem;
       border: 1px solid rgba(99, 110, 114, .2);
       border-radius: 2px
+    }
+    & input[type="checkbox"] {
+      font-size: 4rem;
     }
     & button {
       width: 5rem;
@@ -107,6 +127,11 @@ export default {
     }
     & div {
       margin-top: auto;
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
     }
     & span {
       font-size: 0.8rem;
@@ -124,7 +149,7 @@ export default {
     align-items: center;
 
     width: 100%;
-    background: rgba(178, 190, 195, .2);
+    background: rgba(178, 190, 195, .12);
 
     & span {
       font-size: 2rem;
