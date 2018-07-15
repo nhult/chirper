@@ -17,7 +17,7 @@ let router = new Router({
       component: LandingPage
     },
     {
-      path: '/',
+      path: '/home',
       name: 'Home',
       component: Home,
       meta: { auth: true }
