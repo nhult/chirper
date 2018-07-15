@@ -1,15 +1,13 @@
 <template>
-  <div class="ResetPassword">
-
+  <div class="Home">
+    How are ye boi
   </div>
 </template>
 
 <script>
 export default {
-  name: 'ResetPassword',
-  data () {
-    return { resetEmail: '' }
-  }
+  name: 'Home',
+  methods: { }
 }
 </script>
 

@@ -122,10 +122,6 @@ export default {
       position: relative;
       top: 50%;
       transform: translateY(-50%);
-
-      &:focus {
-        outline: 0;
-      }
     }
   }
 }
@@ -153,7 +149,6 @@ export default {
     }
 
     &:focus {
-      outline: none;
       border-bottom: 2px solid rgba(9, 132, 227, .9);
     }
   }

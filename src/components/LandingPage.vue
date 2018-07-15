@@ -10,8 +10,8 @@
 
     <div class="LandingPage-Right">
       <div class="Login__form">
-        <input type="email" placeholder="Email address" v-model="loginEmail" />
-        <input type="password" placeholder="Password" v-model="loginPassword" />
+        <input type="email" placeholder="Email address" v-model="loginEmail" v-on:keyup="__inputKeyPress" />
+        <input type="password" placeholder="Password" v-model="loginPassword" v-on:keyup="__inputKeyPress" />
         <input type="submit" value="Log in" class="Login__button" @click="signIn()" />
         <router-link to="/reset"><a>Forgot password?</a></router-link>
       </div>
@@ -57,6 +57,9 @@ export default {
           alert(err.message)
         }
       );
+    },
+    __inputKeyPress: function(event) {
+      if (event.key === 'Enter') this.signIn();
     }
   }
 }
@@ -118,9 +121,6 @@ export default {
     border-radius: 30px;
     cursor: pointer;
 
-    &:focus {
-      outline: 0;
-    }
     &:hover {
       background: rgba(9, 132, 227, .1);
     }
@@ -210,10 +210,6 @@ export default {
         cursor: pointer;
         color: white;
         font-weight: bold;
-
-        &:focus {
-          outline: 0;
-        }
         &:hover {
           background: rgba(9, 132, 227, 1);
         }

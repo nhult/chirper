@@ -5,8 +5,8 @@
     <div class="Login__container">
       <div class="Login__form">
         <h2>Log in to Chirper</h2>
-        <input type="email" placeholder="Email" v-model="loginEmail" />
-        <input type="password" placeholder="Password" v-model="loginPassword" />
+        <input type="email" placeholder="Email" v-model="loginEmail" v-on:keyup="__inputKeyPress" />
+        <input type="password" placeholder="Password" v-model="loginPassword" v-on:keyup="__inputKeyPress" />
         <div>
           <button type="button" class="Login__button" @click="signIn()">Log in</button>
           <!-- <input type="checkbox">Remember me</input> -->
@@ -45,6 +45,9 @@ export default {
           alert(err.message)
         }
       );
+    },
+    __inputKeyPress: function(event) {
+      if (event.key === 'Enter') if (event.key === 'Enter') this.signIn();
     }
   }
 }
@@ -118,9 +121,6 @@ export default {
       font-weight: bold;
       cursor: pointer;
 
-      &:focus {
-        outline: 0;
-      }
       &:hover {
         background: rgba(9, 132, 227, 1);
       }
