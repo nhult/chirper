@@ -6,13 +6,18 @@
       <div class="Register__form">
         <div class="Register__form-header">
           <img src="../assets/icons8-twitter-50.png" />
-          <button type="button">Next</button>
+          <!-- <button type="button">Next</button> -->
         </div>
 
-        <div class="Form__step-credentials" v-bind:class="{ active: isActive }">
+        <div class="Form__credentials" v-bind:class="{ active: isActive }">
           <h2>Create your account</h2>
-          <input type="text" placeholder="Name" v-model="registerName" />
-          <input type="email" placeholder="Email" v-model="registerEmail" />
+          <input type="text" placeholder="Name" v-model="registerName" v-on:keyup="__inputKeyPress" />
+          <input type="email" placeholder="Email" v-model="registerEmail" v-on:keyup="__inputKeyPress" />
+          <input type="password" placeholder="Password" v-model="registerPassword" v-on:keyup="__inputKeyPress" />
+          <input type="password" placeholder="Repeat password" v-model="registerPassword2" v-on:keyup="__inputKeyPress" />
+
+          <span>By signing up, you agree to our Terms, Privacy Policy, and Cookie Use. You also agree that you’re over 13 years of age.</span>
+          <button type="button" class="Register__button" @click="signUp()">Sign up</button>
         </div>
       </div>
     </div>
@@ -35,7 +40,7 @@ export default {
       registerPassword: '',
       registerPassword2: '',
 
-      isActive: true,
+      isActive: false
     }
   },
   methods: {
@@ -46,19 +51,22 @@ export default {
 
       firebase.auth().createUserWithEmailAndPassword(this.registerEmail, this.registerPassword).then(
         function(user) {
-          alert("Success.")
+          alert("Register successful! Welcome to Chirper!")
         },
         function(err) {
           alert(err.message)
         }
       );
+    },
+    __inputKeyPress: function(event) {
+      if (event.key === 'Enter') if (event.key === 'Enter') this.signUp();
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.active {background: red;}
+.active { background: red; }
 
 .Register {
   display: flex;
@@ -126,7 +134,7 @@ export default {
   }
 }
 
-.Form__step-credentials {
+.Form__credentials {
   display: flex;
   flex-flow: column nowrap;
   justify-content: flex-start;
@@ -140,7 +148,7 @@ export default {
     border-bottom: 1px solid #ccc;
     font-size: 1.6rem;
 
-    &:nth-child(2) {
+    & {
       margin-bottom: 10px;
 
       &:focus {
@@ -150,7 +158,25 @@ export default {
 
     &:focus {
       border-bottom: 2px solid rgba(9, 132, 227, .9);
+      outline: none;
     }
+  }
+  & span {
+    margin-top: 70px;
+    color: #636e72;
+  }
+  & .Register__button {
+    margin: 20px auto;
+    width: 90%;
+    height: 1.9rem;
+    border: 1px solid rgba(9, 132, 227, .9);
+    border-radius: 20px;
+    background: rgba(9, 132, 227, .8);
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+    font-size: 0.9rem;
+    opacity: 1;
   }
 }
 </style>

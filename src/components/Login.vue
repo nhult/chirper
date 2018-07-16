@@ -144,15 +144,22 @@ export default {
     grid-row-start: 3;
 
     display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
     align-items: center;
+
+    display: grid;
+    grid-template-columns: 10% 40% 50%;
+    grid-template-rows: 100%;
 
     width: 100%;
     background: rgba(178, 190, 195, .12);
 
     & span {
-      font-size: 2rem;
+      grid-column-start: 2;
+      text-align: left;
+      font-size: 0.9rem;
+      color: #636e72;
     }
   }
 }

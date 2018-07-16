@@ -3,7 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 import store from './store/store'
-import router from './router'
+import router from './router/index'
 import firebase from 'firebase'
 import { firebaseConfig } from './keys/firebase'
 
@@ -14,6 +14,12 @@ firebase.initializeApp(firebaseConfig);
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
+  created() {
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) this.$router.push('/home')
+      else this.$router.push('/')
+    })
+  },
   store,
   router,
   components: { App },

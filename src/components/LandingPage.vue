@@ -2,9 +2,18 @@
   <div class="LandingPage">
     <div class="LandingPage-Left">
       <div class="Introduction">
-        <span>Follow your interests.</span>
-        <span>Hear what people are talking about.</span>
-        <span>Join the conversation.</span>
+        <div>
+          <img src="../assets/icons8-search-50.png"></img>
+          <span>Follow your interests.</span>
+        </div>
+        <div>
+          <img src="../assets/icons8-people-50.png"></img>
+          <span>Hear what people are talking about.</span>
+        </div>
+        <div>
+          <img src="../assets/icons8-speech-bubble-50.png"></img>
+          <span>Join the conversation.</span>
+        </div>
       </div>
     </div>
 
@@ -18,7 +27,7 @@
       <div class="Sign__container">
         <div class="Sign__header">
           <img src="../assets/icons8-twitter-50.png"></img>
-          <button type="button" class="Login__button" @click="signIn()">Log in</button>
+          <button type="button" class="Login__button" @click="redirect('/signin')">Log in</button>
         </div>
         <h1>See what’s happening in the world right now</h1>
         <div class="Sign__selection">
@@ -51,7 +60,7 @@ export default {
     signIn: function() {
       firebase.auth().signInWithEmailAndPassword(this.loginEmail, this.loginPassword).then(
         function(user) {
-          alert("Success.")
+          console.log("Successfully logged in!.")
         },
         function(err) {
           alert(err.message)
@@ -91,15 +100,30 @@ export default {
     justify-content: center;
     text-align: left;
     height: 12rem;
-
     color: white;
     font-size: 1.8em;
-
-    width: 20rem;
+    width: 26rem;
     height: 17rem;
 
+    & div {
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: flex-start;
+      align-items: center;
+    }
+    & div img {
+      width: 40px;
+      color: white;
+      margin-right: 15px;
+
+
+    }
+    & div:nth-child(2) {
+      margin: 25px 0;
+    }
     & span {
       margin: 20px 0;
+      font-size: 1.3rem;
     }
   }
 }

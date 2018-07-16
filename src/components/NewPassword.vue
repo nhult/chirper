@@ -1,6 +1,6 @@
 <template>
   <div class="NewPassword">
-
+    <h1>Page not finished yet.</h1>
   </div>
 </template>
 
